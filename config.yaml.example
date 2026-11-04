@@ -1,0 +1,31 @@
+# Example configuration of mx-quickSync. Copy it to config.yaml and adjust the values.
+#
+# Layers (each next one overrides the previous one): config.yaml < secrets.yaml < local.yaml.
+# Login data is NOT stored here: put environments.<env>.oc_auth in local.yaml (personal, see local.yaml.example)
+# or in secrets.yaml (shared by the team, encrypted with sops).
+
+# Root of the MAS customization sources (the quickSync class directories below are relative to it).
+# Absolute (C:\...) or relative to THIS file.
+maximo_smp_dir: ../maximo_SMP
+
+environments:
+  dev:
+    # quickSync swaps the EAR on a live pod, so it works only on environments marked as development
+    # (no flag = forbidden) and only on the node `all`
+    quick_sync: true
+    server: https://api.mas-dev.example.com:6443
+    manage_namespace: mas-dev-manage
+    # Manage nodes (roles); pod: pod name or its prefix - exactly one pod must match
+    nodes:
+      all:
+        pod: dev-dev-all
+        container: all                 # default: all
+
+tools:
+  quickSync:
+    # Compiled customizations classes copied into the EAR modules: module key -> directory relative to maximo_smp_dir.
+    # The keys must match the modules known to quickSync (businessobjectsClassDir, maximouiwebClassDir);
+    # a module without an entry is only unpacked and repacked.
+    classesDir:
+      businessobjectsClassDir: applications/maximo/businessobjects/classes
+      maximouiwebClassDir: applications/maximo/maximouiweb/webmodule/WEB-INF/classes

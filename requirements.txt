@@ -1,0 +1,2 @@
+# Runtime dependencies (the tools also need the `oc` CLI in PATH; `sops` only if secrets.yaml is encrypted)
+PyYAML>=6.0

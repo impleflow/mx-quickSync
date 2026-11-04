@@ -1,0 +1,19 @@
+check:
+  image: ghcr.io/impleflow/dev-python:3.14
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - ruff check .
+    - ruff format --check .
+    - pytest -q
+
+gitleaks:
+  image:
+    name: ghcr.io/gitleaks/gitleaks:latest
+    entrypoint: [""]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - gitleaks detect --redact -v

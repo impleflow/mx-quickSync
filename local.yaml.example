@@ -1,0 +1,13 @@
+# Copy it to local.yaml (it is in .gitignore, never commit it) and fill it in.
+# local.yaml overrides config.yaml and secrets.yaml.
+
+# Machine-specific location of the MAS sources (absolute, or relative to THIS file); optional override
+# maximo_smp_dir: C:/work/maximo_SMP
+
+environments:
+  dev:
+    # Arguments of `oc login`: a token (recommended) or a user name and a password
+    oc_auth: --token=<token>
+    # oc_auth: -u <username> -p <password>
+    # `oc login` certificate check: --insecure-skip-tls-verify is added by default; set to false to verify it
+    # oc_skip_tls_verify: true

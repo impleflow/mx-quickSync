@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dane logowania i lokalne nadpisania konfiguracji
+local.yaml
