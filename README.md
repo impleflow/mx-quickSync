@@ -25,7 +25,9 @@ After reinitialization of manage application the menu could not be visible. You 
 ## Requirements
 
 - Python 3.11+ and `pip install -r requirements.txt` (PyYAML)
-- `oc` CLI in `PATH`, permission to `oc debug node` on the cluster; `sops` only if you use an encrypted `secrets.yaml`
+- `oc` CLI in `PATH`
+- the `cluster-admin` role on the cluster (required by `oc debug node`)
+- `sops` in `PATH`, only if you use an encrypted `secrets.yaml`
 - compiled classes in your MAS sources directory (`maximo_smp_dir`)
 
 ## Configuration
